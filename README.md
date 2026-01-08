@@ -1,2 +1,32 @@
-# vanilla-js-crud-localstorage
-A clean and responsive CRUD application built with vanilla JavaScript that performs Create, Read, Update, and Delete operations using the browser’s localStorage. Focused on DOM manipulation, state handling, and basic UI/UX principles without any frameworks.
+# Vanilla JavaScript CRUD App (LocalStorage)
+
+A simple yet well-structured CRUD (Create, Read, Update, Delete) application built using **pure HTML, CSS, and JavaScript**.  
+The app stores data in the browser’s **localStorage**, allowing persistence without any backend or external libraries.
+
+This project focuses on **core JavaScript fundamentals**, clean UI design, and proper state management.
+
+---
+
+## 🚀 Features
+
+- Create new records
+- Display stored records in a table
+- Edit existing entries
+- Delete records
+- Data persistence using `localStorage`
+- Responsive and modern UI
+- No frameworks, no libraries, no shortcuts
+
+---
+
+## 🛠️ Tech Stack
+
+- **HTML5** – Structure  
+- **CSS3** – Styling & layout  
+- **JavaScript (Vanilla)** – Logic & DOM manipulation  
+- **LocalStorage API** – Client-side persistence  
+
+---
+
+## 📂 Project Structure
+
