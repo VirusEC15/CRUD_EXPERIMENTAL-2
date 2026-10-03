@@ -2,6 +2,7 @@ let id = "";
 const input = document.getElementById('input');
 const submitbtn = document.getElementById('submitbtn');
 const clearAllbtn = document.getElementById('clearAllbtn');
+const tablebody = document.getElementById('tablebody');
 
 document.addEventListener("DOMContentLoaded", displaydata);
 
@@ -33,23 +34,50 @@ function managedata() {
 
 function displaydata() {
     let arr = JSON.parse(localStorage.getItem('names')) || [];
-    let tabledata = "";
+    tablebody.replaceChildren();
 
     arr.forEach((name, index) => {
-        tabledata += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${name}</td>
-                        <td>
-                            <button class="action-btn edit" onclick="editdata(${index})">Edit</button>
-                            <button class="action-btn delete" onclick="deletedata(${index})">Delete</button>
-                        </td>
-                    </tr>
-                `;
-    });
+        const row = document.createElement('tr');
+        const numberCell = document.createElement('td');
+        const nameCell = document.createElement('td');
+        const actionsCell = document.createElement('td');
+        const editButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
 
-    document.getElementById('tablebody').innerHTML = tabledata;
+        numberCell.textContent = String(index + 1);
+        nameCell.textContent = name;
+
+        editButton.type = 'button';
+        editButton.className = 'action-btn edit';
+        editButton.dataset.action = 'edit';
+        editButton.dataset.index = String(index);
+        editButton.textContent = 'Edit';
+
+        deleteButton.type = 'button';
+        deleteButton.className = 'action-btn delete';
+        deleteButton.dataset.action = 'delete';
+        deleteButton.dataset.index = String(index);
+        deleteButton.textContent = 'Delete';
+
+        actionsCell.append(editButton, deleteButton);
+        row.append(numberCell, nameCell, actionsCell);
+        tablebody.append(row);
+    });
 }
+
+tablebody.addEventListener('click', (event) => {
+    const actionButton = event.target.closest('button[data-action]');
+    if (!actionButton) {
+        return;
+    }
+
+    const index = Number(actionButton.dataset.index);
+    if (actionButton.dataset.action === 'edit') {
+        editdata(index);
+    } else if (actionButton.dataset.action === 'delete') {
+        deletedata(index);
+    }
+});
 
 function editdata(index) {
     let arr = JSON.parse(localStorage.getItem('names'));
