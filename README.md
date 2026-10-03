@@ -53,3 +53,8 @@ flowchart TD
     F --> G[Publicar build y reporte como artefacto]
 ```
 
+## Historial de cambios
+
+- **Seguridad:** los nombres guardados se representan como texto para evitar que contenido HTML se ejecute al mostrar los registros.
+- **Formulario:** el guardado se gestiona desde el evento `submit`, por lo que funciona al pulsar el botón o al enviar el formulario con Enter.
+
