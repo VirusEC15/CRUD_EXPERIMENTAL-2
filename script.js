@@ -1,12 +1,12 @@
 let id = "";
 const input = document.getElementById('input');
-const submitbtn = document.getElementById('submitbtn');
+const dataform = document.getElementById('dataform');
 const clearAllbtn = document.getElementById('clearAllbtn');
 const tablebody = document.getElementById('tablebody');
 
 document.addEventListener("DOMContentLoaded", displaydata);
 
-submitbtn.addEventListener("click", (e) => {
+dataform.addEventListener("submit", (e) => {
     e.preventDefault();
     managedata();
 });
