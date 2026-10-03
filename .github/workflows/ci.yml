@@ -1,0 +1,54 @@
+name: CRUD CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate JavaScript syntax
+        id: check
+        run: npm run check
+
+      - name: Build static site
+        id: build
+        run: npm run build
+
+      - name: Generate CI report
+        if: always()
+        env:
+          CHECK_RESULT: ${{ steps.check.outcome }}
+          BUILD_RESULT: ${{ steps.build.outcome }}
+        run: |
+          {
+            echo "# CI execution report"
+            echo ""
+            echo "- Commit: \`$GITHUB_SHA\`"
+            echo "- Branch: \`$GITHUB_REF_NAME\`"
+            echo "- JavaScript syntax validation: \`$CHECK_RESULT\`"
+            echo "- Static build: \`$BUILD_RESULT\`"
+            echo "- Automated behavior tests: not configured in this project."
+          } | tee ci-report.md >> "$GITHUB_STEP_SUMMARY"
+          if [[ -d dist ]]; then
+            cp ci-report.md dist/ci-report.md
+          fi
+
+      - name: Upload build and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-report-${{ github.run_number }}
+          path: |
+            dist/
+            ci-report.md
+          if-no-files-found: ignore

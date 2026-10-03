@@ -1,0 +1,9 @@
+{
+  "name": "crud-localstorage-ci",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "check": "node --check script.js && node --check scripts/build.js",
+    "build": "node scripts/build.js"
+  }
+}
