@@ -1,6 +1,7 @@
 let id = "";
 const input = document.getElementById('input');
 const dataform = document.getElementById('dataform');
+const submitbtn = document.getElementById('submitbtn');
 const clearAllbtn = document.getElementById('clearAllbtn');
 const tablebody = document.getElementById('tablebody');
 
@@ -29,7 +30,14 @@ function managedata() {
 
     localStorage.setItem('names', JSON.stringify(arr));
     input.value = "";
+    resetEditMode();
     displaydata();
+}
+
+function resetEditMode() {
+    id = "";
+    dataform.classList.remove('is-editing');
+    submitbtn.textContent = 'Save';
 }
 
 function displaydata() {
@@ -83,16 +91,30 @@ function editdata(index) {
     let arr = JSON.parse(localStorage.getItem('names'));
     input.value = arr[index];
     id = index;
+    dataform.classList.add('is-editing');
+    submitbtn.textContent = 'Update';
 }
 
 function deletedata(index) {
     let arr = JSON.parse(localStorage.getItem('names'));
     arr.splice(index, 1);
+
+    if (id !== "") {
+        if (Number(id) === index) {
+            resetEditMode();
+            input.value = "";
+        } else if (Number(id) > index) {
+            id = Number(id) - 1;
+        }
+    }
+
     localStorage.setItem('names', JSON.stringify(arr));
     displaydata();
 }
 clearAllbtn.addEventListener("click", () => {
     localStorage.removeItem('names');
+    resetEditMode();
+    input.value = "";
     displaydata();
 });
 

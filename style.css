@@ -36,6 +36,25 @@
             margin-bottom: 20px;
         }
 
+        form.is-editing {
+            padding: 10px;
+            border-left: 4px solid #0f766e;
+            border-radius: 6px;
+            background: #ecfdf5;
+        }
+
+        form.is-editing input {
+            border-color: #0f766e;
+        }
+
+        form.is-editing #submitbtn {
+            background: #0f766e;
+        }
+
+        form.is-editing #submitbtn:hover {
+            background: #0d5e56;
+        }
+
         input {
             flex: 1;
             padding: 12px;

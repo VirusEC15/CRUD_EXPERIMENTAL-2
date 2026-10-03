@@ -57,4 +57,5 @@ flowchart TD
 
 - **Seguridad:** los nombres guardados se representan como texto para evitar que contenido HTML se ejecute al mostrar los registros.
 - **Formulario:** el guardado se gestiona desde el evento `submit`, por lo que funciona al pulsar el botón o al enviar el formulario con Enter.
+- **Edición:** el formulario se resalta y el botón cambia a `Update` al editar; al terminar, vuelve al estado `Save`.
 
