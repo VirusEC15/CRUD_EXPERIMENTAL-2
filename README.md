@@ -1,59 +1,55 @@
-# Vanilla JavaScript CRUD App (LocalStorage)
+# Aplicación CRUD con JavaScript y LocalStorage
 
-A simple yet well-structured CRUD (Create, Read, Update, Delete) application built using **pure HTML, CSS, and JavaScript**.  
-The app stores data in the browser’s **localStorage**, allowing persistence without any backend or external libraries.
+Aplicación CRUD (crear, consultar, actualizar y eliminar) construida con **HTML, CSS y JavaScript puro**. Guarda los datos en `localStorage` del navegador, por lo que no requiere un servidor ni bibliotecas externas.
 
-This project focuses on **core JavaScript fundamentals**, clean UI design, and proper state management.
+## Funcionalidades
 
----
+- Crear registros.
+- Mostrar los registros en una tabla.
+- Editar registros existentes.
+- Eliminar registros.
+- Conservar los datos en `localStorage`.
+- Interfaz adaptable a distintos tamaños de pantalla.
 
-## 🚀 Features
+## Tecnologías
 
-- Create new records
-- Display stored records in a table
-- Edit existing entries
-- Delete records
-- Data persistence using `localStorage`
-- Responsive and modern UI
-- No frameworks, no libraries, no shortcuts
+- **HTML5:** estructura de la aplicación.
+- **CSS3:** estilos y diseño adaptable.
+- **JavaScript:** lógica y manipulación del DOM.
+- **LocalStorage API:** almacenamiento local en el navegador.
 
----
-
-## 🛠️ Tech Stack
-
-- **HTML5** – Structure  
-- **CSS3** – Styling & layout  
-- **JavaScript (Vanilla)** – Logic & DOM manipulation  
-- **LocalStorage API** – Client-side persistence  
-
----
-
-## 📂 Project Structure
+## Estructura del proyecto
 
 ```text
 .
 ├── .github/workflows/ci.yml
 ├── scripts/build.js
+├── .gitignore
 ├── CRUD.html
 ├── script.js
 ├── style.css
 └── package.json
 ```
 
-## Continuous Integration
+## Integración continua
 
-GitHub Actions runs on every push and pull request. The workflow checks JavaScript syntax, assembles the static site in `dist/`, adds an execution report to the Actions summary, and uploads the build and report as an artifact. This project has no automated behavior tests yet.
+GitHub Actions ejecuta el flujo en cada envío de cambios (`push`) y pull request. El pipeline comprueba la sintaxis de JavaScript, prepara los archivos estáticos en `dist/`, agrega un reporte al resumen de la ejecución y publica el sitio generado y el reporte como un artefacto.
 
-Run the same checks locally with `npm run check` and create the static build with `npm run build`.
+El proyecto todavía no cuenta con pruebas automatizadas de comportamiento. Para repetir localmente las validaciones y construir el sitio, ejecuta:
+
+```bash
+npm run check
+npm run build
+```
 
 ```mermaid
 flowchart TD
-	A[Push or pull request] --> B[Checkout repository]
-	B --> C[Set up Node.js 22]
-	C --> D[Validate JavaScript syntax]
-	D --> E[Build static files in dist]
-	D --> F[Generate CI report]
-	E --> F
-	F --> G[Upload build and report artifact]
+    A[Push o pull request] --> B[Obtener el repositorio]
+    B --> C[Configurar Node.js 22]
+    C --> D[Validar sintaxis de JavaScript]
+    D --> E[Construir archivos estaticos en dist]
+    D --> F[Generar reporte de CI]
+    E --> F
+    F --> G[Publicar build y reporte como artefacto]
 ```
 
